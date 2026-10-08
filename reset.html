@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Сброс пароля — ArteAnki</title>
+  </head>
+  <body data-page="reset">
+    <header id="site-nav" class="site-header"></header>
+    <main class="auth-layout">
+      <section class="auth-card">
+        <p class="eyebrow">Восстановление</p>
+        <h1>Вернуть доступ</h1>
+        <p class="muted">Отправим ссылку для создания нового пароля.</p>
+        <form data-auth="reset">
+          <label
+            >Email<input
+              name="email"
+              type="email"
+              autocomplete="email"
+              required
+          /></label>
+          <div data-form-message class="message" hidden></div>
+          <button class="button primary full" type="submit">
+            Отправить письмо
+          </button>
+        </form>
+        <p class="auth-foot"><a href="login.html">Вернуться ко входу</a></p>
+      </section>
+    </main>
+    <script type="module" src="/src/js/main.js"></script>
+  </body>
+</html>

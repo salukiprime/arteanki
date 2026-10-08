@@ -1,0 +1,61 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isSignedIn() { return request.auth != null; }
+    function isOwner(uid) { return isSignedIn() && request.auth.uid == uid; }
+    function isAdmin() { return isSignedIn() && exists(/databases/$(database)/documents/users/$(request.auth.uid)) && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin'; }
+    function validString(value, max) { return value is string && value.size() <= max; }
+    function validTimestamp(value) { return value == null || value is timestamp; }
+    function publicDeck() { return resource.data.visibility == 'public' && resource.data.moderationStatus == 'approved' && resource.data.deletedAt == null; }
+
+    match /users/{uid} {
+      allow read: if isOwner(uid) || isAdmin();
+      allow create: if isOwner(uid) && request.resource.data.role == 'user' && request.resource.data.email == request.auth.token.email && validString(request.resource.data.displayName, 80);
+      allow update: if isAdmin() && uid != request.auth.uid
+        || isOwner(uid) && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['displayName','bio','settings','updatedAt'])
+          && request.resource.data.role == resource.data.role && request.resource.data.email == resource.data.email && request.resource.data.createdAt == resource.data.createdAt;
+      allow delete: if false;
+    }
+
+    match /decks/{deckId} {
+      allow read: if publicDeck() || isAdmin() || isOwner(resource.data.ownerId);
+      allow create: if isSignedIn() && request.resource.data.ownerId == request.auth.uid && request.resource.data.moderationStatus == 'draft' && request.resource.data.visibility == 'private' && request.resource.data.cardCount >= 1 && request.resource.data.cardCount <= 200;
+      allow update: if isAdmin() || (isSignedIn() && resource.data.ownerId == request.auth.uid && request.resource.data.ownerId == resource.data.ownerId && request.resource.data.moderationStatus != 'approved' && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['title','titleLower','description','category','difficulty','tags','searchTokens','visibility','moderationStatus','moderationNote','cardCount','updatedAt','deletedAt']) && request.resource.data.cardCount >= 1 && request.resource.data.cardCount <= 200);
+      allow delete: if false;
+      match /cards/{cardId} {
+        allow read: if get(/databases/$(database)/documents/decks/$(deckId)).data.visibility == 'public' && get(/databases/$(database)/documents/decks/$(deckId)).data.moderationStatus == 'approved' && get(/databases/$(database)/documents/decks/$(deckId)).data.deletedAt == null || isAdmin() || isOwner(get(/databases/$(database)/documents/decks/$(deckId)).data.ownerId);
+        allow create, update: if isAdmin() || (isSignedIn() && getAfter(/databases/$(database)/documents/decks/$(deckId)).data.ownerId == request.auth.uid && validString(request.resource.data.front, 500) && validString(request.resource.data.back, 500) && request.resource.data.position >= 0 && request.resource.data.position < 200);
+        allow delete: if isAdmin() || (isSignedIn() && get(/databases/$(database)/documents/decks/$(deckId)).data.ownerId == request.auth.uid);
+      }
+    }
+
+    match /savedDecks/{saveId} {
+      allow read, delete: if isSignedIn() && resource.data.userId == request.auth.uid || isAdmin();
+      allow create: if isSignedIn() && request.resource.data.userId == request.auth.uid && request.resource.data.deckId is string;
+      allow update: if false;
+    }
+    match /comments/{commentId} {
+      allow read: if true;
+      allow create: if isSignedIn() && request.resource.data.authorId == request.auth.uid && validString(request.resource.data.body, 1000) && request.resource.data.body.size() > 0;
+      allow update: if isAdmin() || (isSignedIn() && resource.data.authorId == request.auth.uid && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['body','updatedAt']) && request.resource.data.authorId == resource.data.authorId && validString(request.resource.data.body, 1000) && request.resource.data.body.size() > 0);
+      allow delete: if isAdmin() || (isSignedIn() && resource.data.authorId == request.auth.uid);
+    }
+    match /cardProgress/{progressId} {
+      allow read: if isSignedIn() && resource.data.userId == request.auth.uid || isAdmin();
+      allow create: if isSignedIn() && request.resource.data.userId == request.auth.uid && request.resource.data.box >= 1 && request.resource.data.box <= 5;
+      allow update: if isSignedIn() && resource.data.userId == request.auth.uid && request.resource.data.userId == resource.data.userId && request.resource.data.box >= 1 && request.resource.data.box <= 5;
+      allow delete: if isSignedIn() && resource.data.userId == request.auth.uid;
+    }
+    match /activeSessions/{sessionId} {
+      allow read, delete: if isSignedIn() && resource.data.userId == request.auth.uid;
+      allow create: if isSignedIn() && request.resource.data.userId == request.auth.uid && request.resource.data.queueCardIds is list && request.resource.data.queueCardIds.size() <= 20 && request.resource.data.currentIndex == 0;
+      allow update: if isSignedIn() && resource.data.userId == request.auth.uid && request.resource.data.userId == resource.data.userId && request.resource.data.deckId == resource.data.deckId && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['queueCardIds','currentIndex','againCount','hardCount','knowCount','requeuedCardIds','lastActivityAt']) && request.resource.data.currentIndex >= 0 && request.resource.data.currentIndex <= request.resource.data.queueCardIds.size() && request.resource.data.queueCardIds.size() <= 200 && request.resource.data.requeuedCardIds is list && request.resource.data.requeuedCardIds.size() <= 200;
+    }
+    match /studySessions/{sessionId} {
+      allow read: if isSignedIn() && (resource.data.userId == request.auth.uid || isAdmin());
+      allow create: if isSignedIn() && request.resource.data.userId == request.auth.uid;
+      allow update: if isAdmin() && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['adminStatus']) && request.resource.data.adminStatus in ['normal','flagged','archived'];
+      allow delete: if false;
+    }
+  }
+}

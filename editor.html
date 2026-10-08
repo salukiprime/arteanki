@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Редактор колоды — ArteAnki</title>
+  </head>
+  <body data-page="editor">
+    <header id="site-nav" class="site-header"></header>
+    <main class="container narrow">
+      <div class="back-link"><a href="dashboard.html">← В кабинет</a></div>
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">КОНСТРУКТОР</p>
+          <h1>Новая колода</h1>
+          <p class="muted">
+            Соберите материал так, чтобы к нему хотелось возвращаться.
+          </p>
+        </div>
+      </div>
+      <div id="form-status" class="message" hidden></div>
+      <form id="deck-form" class="editor-form">
+        <section class="panel form-grid">
+          <label class="wide"
+            >Название<input
+              id="deck-title-input"
+              maxlength="80"
+              required
+              placeholder="Например, английские фразовые глаголы" /></label
+          ><label class="wide"
+            >Описание<textarea
+              id="deck-description-input"
+              maxlength="1000"
+              placeholder="О чём эта колода?"
+            ></textarea></label
+          ><label
+            >Категория<select id="deck-category" required>
+              <option value="">Выберите категорию</option>
+            </select></label
+          ><label
+            >Теги <span class="muted">через запятую</span
+            ><input id="deck-tags-input" placeholder="английский, B2"
+          /></label>
+        </section>
+        <section class="panel generator-panel" aria-labelledby="generator-title">
+          <div class="section-heading compact">
+            <div>
+              <h2 id="generator-title">Создать карточки с AI</h2>
+              <p class="muted">Вставьте учебный текст. Перед сохранением проверьте ответы. До 20 генераций в день.</p>
+            </div>
+          </div>
+          <label for="generator-source">Материал для карточек</label>
+          <textarea id="generator-source" minlength="40" maxlength="12000" placeholder="Вставьте конспект, статью или свои заметки"></textarea>
+          <div class="generator-actions">
+            <label for="generator-count">Количество карточек
+              <input id="generator-count" type="number" min="1" max="20" value="10" />
+            </label>
+            <button id="generate-cards" type="button" class="button outline">Сгенерировать карточки</button>
+          </div>
+          <div id="generator-status" class="message" role="status" aria-live="polite" hidden></div>
+        </section>
+        <section class="panel">
+          <div class="section-heading compact">
+            <div>
+              <h2>Карточки</h2>
+              <p class="muted">От 1 до 200, обе стороны обязательны.</p>
+            </div>
+            <button id="add-card" type="button" class="button outline small">
+              + Добавить карточку
+            </button>
+          </div>
+          <div id="cards-editor" class="cards-editor"></div>
+        </section>
+        <div class="form-actions">
+          <button
+            id="delete-deck"
+            type="button"
+            class="button ghost danger"
+            hidden
+          >
+            Удалить колоду</button
+          ><span></span
+          ><button type="submit" class="button ghost" data-action="save">
+            Сохранить черновик</button
+          ><button type="submit" class="button primary" data-action="submit">
+            Отправить на модерацию
+          </button>
+        </div>
+      </form>
+    </main>
+    <script type="module" src="/src/js/main.js"></script>
+  </body>
+</html>

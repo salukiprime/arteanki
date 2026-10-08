@@ -1,0 +1,17 @@
+{
+  "indexes": [
+    {"collectionGroup":"decks","queryScope":"COLLECTION","fields":[{"fieldPath":"visibility","order":"ASCENDING"},{"fieldPath":"moderationStatus","order":"ASCENDING"},{"fieldPath":"deletedAt","order":"ASCENDING"},{"fieldPath":"updatedAt","order":"DESCENDING"}]},
+    {"collectionGroup":"decks","queryScope":"COLLECTION","fields":[{"fieldPath":"visibility","order":"ASCENDING"},{"fieldPath":"moderationStatus","order":"ASCENDING"},{"fieldPath":"deletedAt","order":"ASCENDING"},{"fieldPath":"titleLower","order":"ASCENDING"}]},
+    {"collectionGroup":"decks","queryScope":"COLLECTION","fields":[{"fieldPath":"visibility","order":"ASCENDING"},{"fieldPath":"moderationStatus","order":"ASCENDING"},{"fieldPath":"deletedAt","order":"ASCENDING"},{"fieldPath":"cardCount","order":"DESCENDING"}]},
+    {"collectionGroup":"decks","queryScope":"COLLECTION","fields":[{"fieldPath":"category","order":"ASCENDING"},{"fieldPath":"visibility","order":"ASCENDING"},{"fieldPath":"moderationStatus","order":"ASCENDING"},{"fieldPath":"deletedAt","order":"ASCENDING"},{"fieldPath":"updatedAt","order":"DESCENDING"}]},
+    {"collectionGroup":"decks","queryScope":"COLLECTION","fields":[{"fieldPath":"tags","arrayConfig":"CONTAINS"},{"fieldPath":"visibility","order":"ASCENDING"},{"fieldPath":"moderationStatus","order":"ASCENDING"},{"fieldPath":"deletedAt","order":"ASCENDING"},{"fieldPath":"updatedAt","order":"DESCENDING"}]},
+    {"collectionGroup":"decks","queryScope":"COLLECTION","fields":[{"fieldPath":"searchTokens","arrayConfig":"CONTAINS"},{"fieldPath":"visibility","order":"ASCENDING"},{"fieldPath":"moderationStatus","order":"ASCENDING"},{"fieldPath":"deletedAt","order":"ASCENDING"},{"fieldPath":"updatedAt","order":"DESCENDING"}]},
+    {"collectionGroup":"decks","queryScope":"COLLECTION","fields":[{"fieldPath":"ownerId","order":"ASCENDING"},{"fieldPath":"updatedAt","order":"DESCENDING"}]},
+    {"collectionGroup":"comments","queryScope":"COLLECTION","fields":[{"fieldPath":"deckId","order":"ASCENDING"},{"fieldPath":"createdAt","order":"DESCENDING"}]},
+    {"collectionGroup":"savedDecks","queryScope":"COLLECTION","fields":[{"fieldPath":"userId","order":"ASCENDING"},{"fieldPath":"savedAt","order":"DESCENDING"}]},
+    {"collectionGroup":"cardProgress","queryScope":"COLLECTION","fields":[{"fieldPath":"userId","order":"ASCENDING"},{"fieldPath":"deckId","order":"ASCENDING"},{"fieldPath":"dueAt","order":"ASCENDING"}]},
+    {"collectionGroup":"activeSessions","queryScope":"COLLECTION","fields":[{"fieldPath":"userId","order":"ASCENDING"},{"fieldPath":"lastActivityAt","order":"DESCENDING"}]},
+    {"collectionGroup":"studySessions","queryScope":"COLLECTION","fields":[{"fieldPath":"userId","order":"ASCENDING"},{"fieldPath":"startedAt","order":"DESCENDING"}]}
+  ],
+  "fieldOverrides": []
+}

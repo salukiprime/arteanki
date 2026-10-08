@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Регистрация — ArteAnki</title>
+  </head>
+  <body data-page="register">
+    <header id="site-nav" class="site-header"></header>
+    <main class="auth-layout">
+      <section class="auth-card">
+        <p class="eyebrow">Новый путь</p>
+        <h1>Создать аккаунт</h1>
+        <p class="muted">Ваши знания заслуживают хорошей системы.</p>
+        <form data-auth="register">
+          <label
+            >Имя<input
+              name="displayName"
+              type="text"
+              maxlength="80"
+              autocomplete="name"
+              required /></label
+          ><label
+            >Email<input
+              name="email"
+              type="email"
+              autocomplete="email"
+              required /></label
+          ><label
+            >Пароль<input
+              name="password"
+              type="password"
+              minlength="6"
+              autocomplete="new-password"
+              required /></label
+          ><label
+            >Повторите пароль<input
+              name="passwordConfirm"
+              type="password"
+              minlength="6"
+              autocomplete="new-password"
+              required
+          /></label>
+          <div data-form-message class="message" hidden></div>
+          <button class="button primary full" type="submit">
+            Создать аккаунт
+          </button>
+        </form>
+        <p class="auth-foot">
+          Уже есть аккаунт? <a href="login.html">Войти</a>
+        </p>
+      </section>
+    </main>
+    <script type="module" src="/src/js/main.js"></script>
+  </body>
+</html>

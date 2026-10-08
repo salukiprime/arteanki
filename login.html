@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Вход — ArteAnki</title>
+  </head>
+  <body data-page="login">
+    <header id="site-nav" class="site-header"></header>
+    <main class="auth-layout">
+      <section class="auth-card">
+        <p class="eyebrow">С возвращением</p>
+        <h1>Войти в ArteAnki</h1>
+        <p class="muted">Продолжите учиться там, где остановились.</p>
+        <form data-auth="login">
+          <label
+            >Email<input
+              name="email"
+              type="email"
+              autocomplete="email"
+              required /></label
+          ><label
+            >Пароль<input
+              name="password"
+              type="password"
+              autocomplete="current-password"
+              required
+          /></label>
+          <div data-form-message class="message" hidden></div>
+          <button class="button primary full" type="submit">Войти</button>
+        </form>
+        <a class="form-link" href="reset.html">Забыли пароль?</a>
+        <p class="auth-foot">
+          Нет аккаунта? <a href="register.html">Зарегистрироваться</a>
+        </p>
+      </section>
+    </main>
+    <script type="module" src="/src/js/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="ArteAnki — тренажёр карточек" />
+    <title>ArteAnki — каталог</title>
+  </head>
+  <body data-page="catalog">
+    <header id="site-nav" class="site-header"></header>
+    <main class="container">
+      <section class="hero">
+        <div>
+          <p class="eyebrow">УЧИМСЯ КАЖДЫЙ ДЕНЬ</p>
+          <h1>Знания, которые<br /><em>остаются с вами</em></h1>
+          <p class="hero-copy">
+            Создавайте колоды, делитесь знаниями и повторяйте важное с
+            интервальным обучением.
+          </p>
+          <div class="hero-actions">
+            <a
+              id="create-deck-cta"
+              class="button primary"
+              href="register.html?next=editor.html"
+              >Создать свою колоду</a
+            ><a class="button ghost" href="#catalog">Исследовать каталог</a>
+          </div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="floating-card card-back">↗</div>
+          <div class="floating-card card-mid">
+            Память<br /><strong>× 2</strong>
+          </div>
+          <div class="floating-card card-front">
+            <span>Сегодня</span><strong>12</strong><small>повторений</small>
+          </div>
+        </div>
+      </section>
+      <section id="catalog" class="catalog-section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">КАТАЛОГ</p>
+            <h2>Найдите свою следующую тему</h2>
+          </div>
+          <span id="result-count" class="muted"></span>
+        </div>
+        <div class="filters">
+          <label class="search-box"
+            ><span>⌕</span
+            ><input
+              id="catalog-search"
+              type="search"
+              placeholder="Поиск по колодам…"
+              aria-label="Поиск" /></label
+          ><select id="category-filter" aria-label="Категория">
+            <option value="">Все категории</option></select
+          ><input id="tag-filter" placeholder="Тег" aria-label="Тег" /><select
+            id="sort-filter"
+            aria-label="Сортировка"
+          >
+            <option value="newest">Сначала новые</option>
+            <option value="title">По названию</option>
+            <option value="count">По количеству карточек</option></select
+          ><button id="clear-filters" class="button ghost">Сбросить</button>
+        </div>
+        <div id="catalog-status" class="message" hidden></div>
+        <div id="catalog-grid" class="deck-grid"></div>
+        <button id="load-more" class="button outline load-more" hidden>
+          Показать ещё
+        </button>
+      </section>
+    </main>
+    <footer>
+      ArteAnki <span>·</span> интервальное обучение с заботой о памяти
+    </footer>
+    <script type="module" src="/src/js/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Обучение — ArteAnki</title>
+  </head>
+  <body data-page="study">
+    <header id="site-nav" class="site-header"></header>
+    <main class="study-layout">
+      <div class="study-top">
+        <a href="dashboard.html">← В кабинет</a
+        ><span id="study-progress"></span>
+      </div>
+      <div id="study-status" class="message" hidden></div>
+      <section id="study-area" class="study-area">
+        <div class="study-card">
+          <div id="study-difficulty" class="pill card-difficulty"></div>
+          <div class="study-label">ВОПРОС</div>
+          <div id="front-side" class="study-side"></div>
+          <div id="answer-side" hidden>
+            <div class="study-divider"></div>
+            <div class="study-label">ОТВЕТ</div>
+            <div id="back-side" class="study-side"></div>
+          </div>
+        </div>
+        <button id="reveal-card" class="button primary reveal">
+          Показать ответ
+        </button>
+        <div class="rating-buttons">
+          <button class="rating again" data-rating="again">Не знаю</button
+          ><button class="rating hard" data-rating="hard">Трудно</button
+          ><button class="rating know" data-rating="know">Знаю</button>
+        </div>
+        <button id="abandon-study" class="text-button">Завершить сессию</button>
+      </section>
+      <section id="study-empty" class="empty-state panel" hidden>
+        <div class="empty-icon">☀</div>
+        <h2>На сегодня всё</h2>
+        <p id="next-due">Нет карточек для повторения.</p>
+        <a class="button ghost" href="dashboard.html">Вернуться в кабинет</a>
+      </section>
+      <section id="study-result" class="empty-state panel" hidden>
+        <div class="empty-icon">✦</div>
+        <h2>Сессия завершена</h2>
+        <p id="result-stats"></p>
+        <a class="button primary" href="dashboard.html">В кабинет</a>
+      </section>
+    </main>
+    <script type="module" src="/src/js/main.js"></script>
+  </body>
+</html>

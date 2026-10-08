@@ -1,0 +1,11 @@
+.generator-panel { display: grid; gap: 14px; }
+.generator-panel .section-heading { margin-bottom: 0; }
+.generator-panel textarea { min-height: 180px; }
+.generator-actions { display: flex; align-items: end; gap: 12px; flex-wrap: wrap; }
+.generator-actions label { width: 170px; }
+.generator-actions button { min-height: 45px; }
+.generator-panel .message { margin: 0; }
+
+@media (max-width: 600px) {
+  .generator-actions label, .generator-actions button { width: 100%; }
+}

@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Колода — ArteAnki</title>
+  </head>
+  <body data-page="deck">
+    <header id="site-nav" class="site-header"></header>
+    <main id="deck-page" class="container narrow">
+      <div data-global-error class="message error" hidden></div>
+      <div class="back-link">
+        <a href="index.html">← Вернуться в каталог</a>
+      </div>
+      <section class="deck-hero">
+        <div>
+          <div id="deck-tags" class="tags"></div>
+          <h1 id="deck-title">Загрузка…</h1>
+          <p id="deck-description" class="lead"></p>
+          <div id="deck-meta" class="meta-line"></div>
+          <div class="hero-actions">
+            <a id="study-link" class="button primary" href="#"
+              >Начать обучение</a
+            ><button id="save-deck" class="button ghost">Сохранить</button
+            ><a class="button ghost" href="login.html">Войти для действий</a>
+          </div>
+        </div>
+      </section>
+      <div id="deck-status" class="message" hidden></div>
+      <div id="moderation-note" class="moderation-note" hidden></div>
+      <div class="two-column">
+        <section>
+          <div class="section-heading compact">
+            <h2>Карточки <span class="muted">до 200</span></h2>
+          </div>
+          <div id="cards-list" class="cards-list"></div>
+        </section>
+        <aside>
+          <section class="panel">
+            <div class="section-heading compact"><h2>Комментарии</h2></div>
+            <div id="comments-status" class="message" hidden></div>
+            <div id="comments-list" class="comments-list"></div>
+            <form id="comment-form" class="comment-form">
+              <textarea
+                id="comment-body"
+                maxlength="1000"
+                placeholder="Поделитесь впечатлением…"
+                required
+              ></textarea
+              ><button class="button primary small" type="submit">
+                Оставить комментарий
+              </button>
+            </form>
+          </section>
+          <section class="panel">
+            <h2>Похожие колоды</h2>
+            <div id="similar-status" class="message" hidden></div>
+            <div id="similar-list" class="similar-list"></div>
+          </section>
+        </aside>
+      </div>
+    </main>
+    <script type="module" src="/src/js/main.js"></script>
+  </body>
+</html>

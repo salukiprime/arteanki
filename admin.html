@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Админ-панель — ArteAnki</title>
+  </head>
+  <body data-page="admin">
+    <header id="site-nav" class="site-header"></header>
+    <main class="container">
+      <div id="access-denied" class="empty-state panel" hidden>
+        <div class="empty-icon">⊘</div>
+        <h1>Нет доступа</h1>
+        <p>Эта страница доступна только администраторам.</p>
+      </div>
+      <div id="admin-content">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">УПРАВЛЕНИЕ</p>
+            <h1>Админ-панель</h1>
+          </div>
+        </div>
+        <div id="admin-status" class="message" role="status" aria-live="polite" hidden></div>
+        <div id="admin-summary" class="stats-grid"></div>
+        <div class="admin-grid">
+          <section class="panel">
+            <h2>Модерация колод</h2>
+            <div id="admin-decks"></div>
+          </section>
+          <section class="panel">
+            <h2>Пользователи</h2>
+            <div id="admin-users"></div>
+          </section>
+          <section class="panel">
+            <h2>Комментарии</h2>
+            <div id="admin-comments"></div>
+          </section>
+          <section class="panel">
+            <h2>Учебные сессии</h2>
+            <div id="admin-sessions"></div>
+          </section>
+        </div>
+      </div>
+    </main>
+    <script type="module" src="/src/js/main.js"></script>
+  </body>
+</html>

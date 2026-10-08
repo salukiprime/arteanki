@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Мой кабинет — ArteAnki</title>
+  </head>
+  <body data-page="dashboard">
+    <header id="site-nav" class="site-header"></header>
+    <main class="container">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">ВАШЕ ПРОСТРАНСТВО</p>
+          <h1>Мой кабинет</h1>
+        </div>
+        <a class="button primary" href="editor.html">+ Новая колода</a>
+      </div>
+      <div id="dashboard-status" class="message" hidden></div>
+      <section class="dashboard-grid">
+        <div class="panel profile-panel">
+          <h2>Профиль</h2>
+          <form id="profile-form">
+            <label>Имя<input id="profile-name" maxlength="80" required /></label
+            ><label
+              >О себе<textarea
+                id="profile-bio"
+                maxlength="500"
+              ></textarea></label
+            ><button class="button primary small" type="submit">
+              Сохранить
+            </button>
+          </form>
+        </div>
+        <div class="panel">
+          <div class="section-heading compact"><h2>Активные сессии</h2></div>
+          <div id="active-sessions"></div>
+        </div>
+      </section>
+      <section class="dashboard-section">
+        <div class="section-heading compact"><h2>Мои колоды</h2></div>
+        <div id="my-decks" class="deck-grid"></div>
+      </section>
+      <section class="dashboard-section">
+        <div class="section-heading compact"><h2>Библиотека</h2></div>
+        <div id="saved-decks" class="saved-list"></div>
+      </section>
+      <section class="dashboard-section">
+        <div class="section-heading compact"><h2>История обучения</h2></div>
+        <div id="history-list" class="history-list"></div>
+      </section>
+      <section class="dashboard-section">
+        <div class="section-heading compact"><h2>Мои комментарии</h2></div>
+        <div id="my-comments" class="saved-list"></div>
+      </section>
+    </main>
+    <script type="module" src="/src/js/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,12 @@
+# graft's local graph cache — regenerable, not committed (run `graft build`).
+/graft/
+/node_modules/
+/functions/node_modules/
+/dist/
+/.firebase/
+.env
+.env.*
+!.env.example
+/functions/.secret.local
+*-debug.log
+.DS_Store

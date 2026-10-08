@@ -1,0 +1,26 @@
+{
+  "name": "arteanki",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "dev:local": "VITE_FIREBASE_EMULATORS=1 vite",
+    "emulators": "node --env-file=.env scripts/prepare-local-secret.mjs && PATH=/opt/homebrew/opt/openjdk@21/bin:$PATH npm exec --yes --package=firebase-tools -- firebase emulators:start --only auth,firestore,functions --project likeanki-48c82",
+    "build": "vite build",
+    "preview": "vite preview",
+    "explabs:smoke": "node --env-file=.env scripts/explabs-smoke.mjs",
+    "local:smoke": "node --env-file=.env scripts/local-generation-check.mjs",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "firebase": "^11.0.2",
+    "openai": "^7.23.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-basic-ssl": "^1.1.0",
+    "vite": "^6.0.0",
+    "vitest": "^2.1.8"
+  }
+}
